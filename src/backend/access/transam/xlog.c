@@ -5990,9 +5990,9 @@ GetXLogReceiptTime(TimestampTz *rtime, bool *fromStream)
 #define RecoveryRequiresIntParameter(param_name, currValue, minValue) \
 do { \
 	if ((currValue) < (minValue)) \
-		ereport(ERROR, \
+		ereport(WARNING, \
 				(errcode(ERRCODE_INVALID_PARAMETER_VALUE), \
-				 errmsg("hot standby is not possible because " \
+				 errmsg("hot standby may not behave as expected on failover because" \
 						"%s = %d is a lower setting than on the master server " \
 						"(its value was %d)", \
 						param_name, \
